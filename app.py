@@ -7,12 +7,29 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
-# 添加登录界面
-username = st.sidebar.text_input("用户名：异地恋")
-password = st.sidebar.text_input("密码：123456", type="password")
-if username == "异地恋" and password == "123456":
-    st.sidebar.success("登录成功！")
-    
+# 登录界面
+def login():
+    # 获取输入的用户名和密码
+    username = st.sidebar.text_input("用户名：异地恋")
+    password = st.sidebar.text_input("密码：123456", type="password")
+
+    # 判断用户名和密码是否正确
+    if username == "异地恋" and password == "123456":
+        st.sidebar.success("登录成功！")
+        # 返回登录成功后显示的组件
+        return True, st.empty()
+    else:
+        # 创建一个空的组件，用于显示错误信息
+        error = st.sidebar.empty()
+        error.error("按键盘Enter进行登录！")
+        # 返回登录失败的状态和用于显示错误信息的组件
+        return False, error
+
+# 显示登录界面
+is_logged_in, error_component = login()
+
+# 如果成功登录，则显示预测界面
+if is_logged_in:
     # 导入数据
     data = pd.read_csv('ydl.csv')
 
@@ -237,5 +254,5 @@ if username == "异地恋" and password == "123456":
     st.write('异地恋真的很辛苦，希望携手坚持到现在的你们，')
     st.write ('不要因为一时的距离和一些细枝末节，而疏忽了这个本该相守一生的人。')
     st.write ('等下次见面，请给他（她）一个大大的拥抱吧！')
-else:
-    st.sidebar.error("按键盘Enter进行登录！")
+# 删除登录界面中的错误信息组件
+error_component.empty()
