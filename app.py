@@ -7,29 +7,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
-# 登录界面
-def login():
-    # 获取输入的用户名和密码
-    username = st.sidebar.text_input("用户名：异地恋")
-    password = st.sidebar.text_input("密码：123456", type="password")
-
-    # 判断用户名和密码是否正确
-    if username == "异地恋" and password == "123456":
-        st.sidebar.success("登录成功！")
-        # 返回登录成功后显示的组件
-        return True, st.empty()
-    else:
-        # 创建一个空的组件，用于显示错误信息
-        error = st.sidebar.empty()
-        error.error("按键盘Enter进行登录！")
-        # 返回登录失败的状态和用于显示错误信息的组件
-        return False, error
-
-# 显示登录界面
-is_logged_in, error_component = login()
-
-# 如果成功登录，则显示预测界面
-if is_logged_in:
+# 添加登录界面
+username = st.sidebar.text_input("用户名：异地恋")
+password = st.sidebar.text_input("密码：123456", type="password")
+if username == "异地恋" and password == "123456":
+    st.sidebar.success("登录成功！")
+    
     # 导入数据
     data = pd.read_csv('ydl.csv')
 
@@ -67,10 +50,10 @@ if is_logged_in:
          st.text(' 根据选定的因素制作了调查问卷和表单，通过线上和线下的方式，收集了203份数据，作为本项目的数据')
          st.text('集。调查问卷和表单如下：')
          from PIL import Image
-         image = Image.open('p1.jpg')
+         image = Image.open('D:\桌面/p1.jpg')
          st.image(image, caption='Sunset in the mountains', use_column_width=True)
          from PIL import Image
-         image = Image.open('p2.jpg')
+         image = Image.open('D:\桌面/p2.jpg')
          st.image(image, caption='Sunset in the mountains', use_column_width=True)
          st.text('关于模型，我们分析了异地恋分手概率这个问题，它既可以看作回归问题也可以看作分类问题，因此我们')
          st.text('选择了既适用于回归问题和分类问题的预测概率的随机森林模型，同时利用决策树、LogisticRegress-')
@@ -92,20 +75,20 @@ if is_logged_in:
 
     import matplotlib
     matplotlib.rcParams['font.family'] = 'SimHei'
-    st.subheader('1.经历异地恋的次数（次）')
+    st.subheader('1.经历异地恋的次数')
 
     fig = plt.figure()
-    label=['1','2','3','>=4']
+    label=['一次','两次','三次','四次及以上']
     explode=[0.01,0.01,0.01,0.01]
     value=[62.5,25,9.6,2.9]
     plt.pie(value, explode=explode,labels=label, radius = 0.7,autopct='%1.1f%%')
     plt.show()
     st.pyplot(fig)
 
-    st.subheader('2.经历异地恋的时间(个月、年)')
+    st.subheader('2.经历异地恋的时间')
 
     fig = plt.figure()
-    label=['0-6 months','6-12 months','1-3 years','>=3 years']
+    label=['0-6个月','6-12个月','1-3年','3年及以上']
     explode=[0.01,0.01,0.01,0.01]
     value=[25,21.9,32.9,20.2]
     plt.pie(value, explode=explode,labels=label, radius = 0.7,autopct='%1.1f%%')
@@ -116,7 +99,7 @@ if is_logged_in:
     st.subheader('3.异地恋成功的概率')
 
     fig = plt.figure()
-    label=['success','fail']
+    label=['成功','失败']
     explode=[0.01,0.01]
     value=[70.6,29.4]
     plt.pie(value, explode=explode,labels=label, radius = 0.7,autopct='%1.1f%%')
@@ -254,5 +237,5 @@ if is_logged_in:
     st.write('异地恋真的很辛苦，希望携手坚持到现在的你们，')
     st.write ('不要因为一时的距离和一些细枝末节，而疏忽了这个本该相守一生的人。')
     st.write ('等下次见面，请给他（她）一个大大的拥抱吧！')
-# 删除登录界面中的错误信息组件
-error_component.empty()
+else:
+    st.sidebar.error("按键盘Enter进行登录！")
