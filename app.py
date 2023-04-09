@@ -50,10 +50,10 @@ if username == "异地恋" and password == "123456":
          st.text(' 根据选定的因素制作了调查问卷和表单，通过线上和线下的方式，收集了203份数据，作为本项目的数据')
          st.text('集。调查问卷和表单如下：')
          from PIL import Image
-         image = Image.open('D:\桌面/p1.jpg')
+         image = Image.open('p1.jpg')
          st.image(image, caption='Sunset in the mountains', use_column_width=True)
          from PIL import Image
-         image = Image.open('D:\桌面/p2.jpg')
+         image = Image.open('p2.jpg')
          st.image(image, caption='Sunset in the mountains', use_column_width=True)
          st.text('关于模型，我们分析了异地恋分手概率这个问题，它既可以看作回归问题也可以看作分类问题，因此我们')
          st.text('选择了既适用于回归问题和分类问题的预测概率的随机森林模型，同时利用决策树、LogisticRegress-')
