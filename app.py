@@ -73,7 +73,9 @@ if username == "异地恋" and password == "123456":
 
     st.header('影响异地恋分手概率的因素很多 在这我们选择了其中影响较大的几个因素 下图是每个因素造成异地恋分手的概率。')
 
+    import codecs
     import matplotlib
+    codecs.register(lambda name: codecs.lookup('utf-8') if name == 'cp65001' else None)
     matplotlib.rcParams['font.family'] = 'SimHei'
     st.subheader('1.经历异地恋的次数')
 
