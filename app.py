@@ -73,24 +73,22 @@ if username == "异地恋" and password == "123456":
 
     st.header('影响异地恋分手概率的因素很多 在这我们选择了其中影响较大的几个因素 下图是每个因素造成异地恋分手的概率。')
 
-    import codecs
     import matplotlib
-    codecs.register(lambda name: codecs.lookup('utf-8') if name == 'cp65001' else None)
     matplotlib.rcParams['font.family'] = 'SimHei'
-    st.subheader('1.经历异地恋的次数')
+    st.subheader('1.经历异地恋的次数（次）')
 
     fig = plt.figure()
-    label=['一次','两次','三次','四次及以上']
+    label=['1','2','3','>=4']
     explode=[0.01,0.01,0.01,0.01]
     value=[62.5,25,9.6,2.9]
     plt.pie(value, explode=explode,labels=label, radius = 0.7,autopct='%1.1f%%')
     plt.show()
     st.pyplot(fig)
 
-    st.subheader('2.经历异地恋的时间')
+    st.subheader('2.经历异地恋的时间(个月、年)')
 
     fig = plt.figure()
-    label=['0-6个月','6-12个月','1-3年','3年及以上']
+    label=['0-6 months','6-12 months','1-3 years','>=3 years']
     explode=[0.01,0.01,0.01,0.01]
     value=[25,21.9,32.9,20.2]
     plt.pie(value, explode=explode,labels=label, radius = 0.7,autopct='%1.1f%%')
@@ -101,7 +99,7 @@ if username == "异地恋" and password == "123456":
     st.subheader('3.异地恋成功的概率')
 
     fig = plt.figure()
-    label=['成功','失败']
+    label=['success','fail']
     explode=[0.01,0.01]
     value=[70.6,29.4]
     plt.pie(value, explode=explode,labels=label, radius = 0.7,autopct='%1.1f%%')
